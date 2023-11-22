@@ -21,6 +21,8 @@ interface arrItem {
 export class AppComponent implements OnDestroy {
   message = 'from app component';
   condition = true;
+  options = ['uno', 'dos', 'tres'];
+  selectedOption = 'tres';
   items: arrItem[] = [
     { id: 1, name: 'item1' },
     { id: 2, name: 'item2' },

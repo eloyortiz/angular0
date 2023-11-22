@@ -1,15 +1,11 @@
 <router-outlet />
-<h1>{{message}}</h1>
+<h1>{{ message }}</h1>
 
 <!-- DIRECTIVAS -->
 <!-- de Atributos -->
-<div [ngStyle]="{color: condition ? 'blue' : 'red'}" (click)="changeCondition()">
-  ngStyle
-</div>
+<div [ngStyle]="{ color: condition ? 'blue' : 'red' }" (click)="changeCondition()">ngStyle</div>
 
-<div [ngClass]="condition ? 'green' : 'red'" (click)="changeCondition()">
-  ngClass
-</div>
+<div [ngClass]="condition ? 'green' : 'red'" (click)="changeCondition()">ngClass</div>
 
 <!-- Estructurales -->
 <div *ngIf="condition">ngIf</div>
@@ -17,18 +13,32 @@
 <!-- <div *ngFor="let item of items">{{item}}</div> -->
 
 <ul>
-  <ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn">
-    <li *ngIf="condition">{{item.name + i}}</li>
+  <ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn; let last = last">
+    <li *ngIf="i <= items.length - 2">{{ item.name + i }}</li>
   </ng-container>
 </ul>
+
+<!-- NgSwitch -->
+<ng-container [ngSwitch]="selectedOption">
+  <h1 *ngSwitchCase="'uno'">soy el uno</h1>
+  <h2 *ngSwitchCase="'dos'">soy el dos</h2>
+  <ng-container *ngSwitchCase="'tres'" [ngTemplateOutlet]="numeroTresTemplate"></ng-container>
+</ng-container>
+
+<ng-template #numeroTresTemplate>
+  <ul>
+    <ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn; let last = last">
+      <li *ngIf="i <= items.length - 2">{{ item.name + i }}</li>
+    </ng-container>
+  </ul>
+</ng-template>
+
 
 
 <!-- Templates -->
 <ng-container>Container</ng-container>
 
-<ng-template #template>
-  Esto es un template
-</ng-template>
+<ng-template #template> Esto es un template </ng-template>
 
 <!-- NgIf por Angular -->
 <ng-template #ngIfAngular [ngIf]="condition">
@@ -39,11 +49,11 @@
 <!-- <ng-template #ngForAngular ngFor let-item [ngForOf]="items" let-i="index" [ngForTrackBy]="i">
   <div>{{item}}</div>
 </ng-template> -->
-<hr>
+<hr />
 <div class="appComponent">
   <p>App Component</p>
-  {{data}}
-  <br>
+  {{ data }}
+  <br />
   <button (click)="addData()">set value data</button>
 </div>
 
