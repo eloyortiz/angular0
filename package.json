@@ -23,7 +23,7 @@
     "zone.js": "~0.16.2"
   },
   "overrides": {
-    "socket.io-parser": ">=4.2.6",
+    "socket.io-parser": ">=4.2.7",
     "undici": ">=7.24.0"
   },
   "devDependencies": {
